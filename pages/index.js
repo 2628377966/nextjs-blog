@@ -1,8 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { getSortedPostsData } from '../lib/posts'
 
-export default function Home() {
+export async function getStaticProps() {
+  const postsData = getSortedPostsData()
+
+  return {
+    props: {
+      postsData
+    }
+  }
+}
+
+export default function Home({postsData}) {
   return (
     <div className={styles.container}>
       <Head>
